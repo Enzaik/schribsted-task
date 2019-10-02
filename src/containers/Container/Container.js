@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Article from '../../components/Article/Article';
 import CategoriesInput from '../../components/CategoriesInput/CategoriesInput'
+import SortInput from '../../components/SortInput/SortInput';
 
 
 class Container extends Component {
@@ -10,6 +11,7 @@ class Container extends Component {
         articles: [],
         fashion: false,
         sport: false,
+        order: 'asc',
         error: false
     };
 
@@ -30,12 +32,9 @@ class Container extends Component {
                 return response.json();
             })
             .then(function (json) {
-                console.log(json);
                 that.setState(json);
-                // console.log(that); 
             })
             .catch(function () {
-                // console.log("error");
                 that.setState({ error: true })
             });
 
@@ -48,7 +47,6 @@ class Container extends Component {
             })
             .then(function (json) {
                 that.setState({ articles: that.state.articles.concat(json.articles) });
-                // console.log(that.state, 'json');
             })
             .catch(function () {
                 that.setState({ error: true })
@@ -56,11 +54,43 @@ class Container extends Component {
     };
     handleClick = e => {
         e.persist();
-        // console.log(e.target.value, e.target.checked);
         this.setState((prevState, prevProps) => {
             return { [e.target.value]: !this.state[e.target.value] }
         },
             () => console.log(this.state, 'state'))
+    }
+
+    handleSortChange = e => {
+          console.log(e.target[e.target.selectedIndex].value);
+        this.setState({order: e.target[e.target.selectedIndex].value})
+    }
+
+    compare = (a, b) => {
+        const months = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember']
+
+        let [dayA, monthA, yearA] = a.props.date.split(' ');
+        let [dayB, monthB, yearB] = b.props.date.split(' ');
+
+        dayA = dayA.split('.')[0];
+        dayB = dayB.split('.')[0];
+        let myADate = new Date(`${yearA}-${months.indexOf(monthA) + 1}-${dayA}`)
+        let myBDate = new Date(`${yearB}-${months.indexOf(monthB) + 1}-${dayB}`)
+        console.log(this.state.order, 'order state');
+        
+
+        if (myADate < myBDate && this.state.order === 'asc') {
+            return -1;
+        }
+        if (myADate > myBDate && this.state.order === 'asc') {
+            return 1;
+        }
+        if (myADate < myBDate && this.state.order === 'desc') {
+            return 1;
+        }
+        if (myADate > myBDate && this.state.order === 'desc') {
+            return -1;
+        }
+        return 0;
     }
 
 
@@ -73,12 +103,13 @@ class Container extends Component {
                     title={article.title}
                     img={article.image}
                     category={article.category}
+                    date={article.date}
                 />
             })
-            .filter(elem => {
-                console.log(elem.props.category, 'map')
-                return this.state[elem.props.category]
-            })
+                .filter(elem => {
+                    return this.state[elem.props.category]
+                })
+                .sort(this.compare)
         } else {
             articles = <span> Server error </span>
         }
@@ -87,8 +118,16 @@ class Container extends Component {
             <CategoriesInput handleClick={this.handleClick} />
         ) : null;
 
+        let sortInput = !this.state.error ? (
+            <SortInput handleSortChange={this.handleSortChange}/>
+        ) : null;
+
+
+
+
         return (
             <div>
+                {sortInput}
                 {categoriesInput}
                 {articles}
             </div>
