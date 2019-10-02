@@ -9,13 +9,19 @@ class Container extends Component {
     state = {
         articles: [],
         fashion: false,
-        sports: false,
+        sport: false,
         error: false
     };
 
 
     componentDidMount() {
         let that = this;
+
+
+
+
+        //-----------------
+
         fetch('http://localhost:6010/articles/sports')
             .then(function (response) {
                 if (!response.ok) {
@@ -29,13 +35,28 @@ class Container extends Component {
                 // console.log(that); 
             })
             .catch(function () {
-                console.log("error");
+                // console.log("error");
+                that.setState({ error: true })
+            });
+
+        fetch('http://localhost:6010/articles/fashion')
+            .then(function (response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then(function (json) {
+                that.setState({ articles: that.state.articles.concat(json.articles) });
+                // console.log(that.state, 'json');
+            })
+            .catch(function () {
                 that.setState({ error: true })
             });
     };
     handleClick = e => {
         e.persist();
-        console.log(e.target.value, e.target.checked);
+        // console.log(e.target.value, e.target.checked);
         this.setState((prevState, prevProps) => {
             return { [e.target.value]: !this.state[e.target.value] }
         },
@@ -51,7 +72,12 @@ class Container extends Component {
                     key={article.id}
                     title={article.title}
                     img={article.image}
+                    category={article.category}
                 />
+            })
+            .filter(elem => {
+                console.log(elem.props.category, 'map')
+                return this.state[elem.props.category]
             })
         } else {
             articles = <span> Server error </span>
