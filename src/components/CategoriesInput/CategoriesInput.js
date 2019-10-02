@@ -1,9 +1,9 @@
 import React from 'react';
 
-const categoriesInput = (props) => (
-    <div>
-        <input type='checkbox' value='Sports' /> <label>Sports</label>
-        <input type='checkbox' value='Fashion' /> <label>Fashion</label>
+const categoriesInput = ({handleClick}) => (
+    <div onClick={handleClick}>
+        <input type='checkbox' value='sports' /> <label>Sports</label>
+        <input type='checkbox' value='fashion' /> <label>Fashion</label>
     </div>
 )
 

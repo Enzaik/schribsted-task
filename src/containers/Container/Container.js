@@ -8,13 +8,15 @@ class Container extends Component {
 
     state = {
         articles: [],
+        fashion: false,
+        sports: false,
         error: false
     };
 
 
     componentDidMount() {
         let that = this;
-        fetch('http://localhost:6010/articles/fashion')
+        fetch('http://localhost:6010/articles/sports')
             .then(function (response) {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -31,6 +33,14 @@ class Container extends Component {
                 that.setState({ error: true })
             });
     };
+    handleClick = e => {
+        e.persist();
+        console.log(e.target.value, e.target.checked);
+        this.setState((prevState, prevProps)=>{
+            return {[e.target.value]: !this.state[e.target.value]}
+        },
+        ()=> console.log(this.state, 'state'))
+    }
 
 
     render() {
@@ -48,7 +58,7 @@ class Container extends Component {
         }
 
         let categoriesInput = !this.state.error ? (
-            <CategoriesInput />
+            <CategoriesInput handleClick={this.handleClick} />
         ) : null;
 
         return (
