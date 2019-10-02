@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import Article from '../../components/Article/Article';
+import CategoriesInput from '../../components/CategoriesInput/CategoriesInput'
 
 
-class Articles extends Component {
+class Container extends Component {
 
     state = {
         articles: [],
@@ -25,16 +26,15 @@ class Articles extends Component {
                 that.setState(json);
                 // console.log(that); 
             })
-            .catch(function() {
+            .catch(function () {
                 console.log("error");
-                that.setState({error: true})
+                that.setState({ error: true })
             });
     };
 
 
     render() {
         let articles;
-
         if (!this.state.error) {
             articles = this.state.articles.map(article => {
                 return <Article
@@ -47,8 +47,13 @@ class Articles extends Component {
             articles = <span> Server error </span>
         }
 
+        let categoriesInput = !this.state.error ? (
+            <CategoriesInput />
+        ) : null;
+
         return (
             <div>
+                {categoriesInput}
                 {articles}
             </div>
 
@@ -58,4 +63,4 @@ class Articles extends Component {
     }
 };
 
-export default Articles;
+export default Container;
