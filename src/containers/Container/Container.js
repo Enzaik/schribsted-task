@@ -36,10 +36,10 @@ class Container extends Component {
     handleClick = e => {
         e.persist();
         console.log(e.target.value, e.target.checked);
-        this.setState((prevState, prevProps)=>{
-            return {[e.target.value]: !this.state[e.target.value]}
+        this.setState((prevState, prevProps) => {
+            return { [e.target.value]: !this.state[e.target.value] }
         },
-        ()=> console.log(this.state, 'state'))
+            () => console.log(this.state, 'state'))
     }
 
 
