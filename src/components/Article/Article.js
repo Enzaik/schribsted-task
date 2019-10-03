@@ -1,11 +1,23 @@
 import React from 'react';
 
-const article = ({title, img, date}) =>{
+import './Article.css'
+
+const article = ({ title, img, date, preamble }) => {
     return (
-        <div>
-             <img src={img} alt = 'img' height="42" width="42"></img>
-            {title}
-        {date}
+        <div className='article'>
+            <div className='image'>
+                <img src={img} alt='img' height="42" width="42"></img>
+            </div>
+            <div className='description'>
+                <div className='title'>
+                    {title}
+                </div>
+                <div className='date'>
+                    {date}
+                </div>
+                
+            </div>
+
         </div>
     )
 };

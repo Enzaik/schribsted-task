@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Article from '../../components/Article/Article';
 import CategoriesInput from '../../components/CategoriesInput/CategoriesInput'
 import SortInput from '../../components/SortInput/SortInput';
+import './Container.css'
 
 
 class Container extends Component {
@@ -61,8 +62,8 @@ class Container extends Component {
     }
 
     handleSortChange = e => {
-          console.log(e.target[e.target.selectedIndex].value);
-        this.setState({order: e.target[e.target.selectedIndex].value})
+        console.log(e.target[e.target.selectedIndex].value);
+        this.setState({ order: e.target[e.target.selectedIndex].value })
     }
 
     compare = (a, b) => {
@@ -76,7 +77,7 @@ class Container extends Component {
         let myADate = new Date(`${yearA}-${months.indexOf(monthA) + 1}-${dayA}`)
         let myBDate = new Date(`${yearB}-${months.indexOf(monthB) + 1}-${dayB}`)
         console.log(this.state.order, 'order state');
-        
+
 
         if (myADate < myBDate && this.state.order === 'asc') {
             return -1;
@@ -104,6 +105,7 @@ class Container extends Component {
                     img={article.image}
                     category={article.category}
                     date={article.date}
+                    preamble={article.preamble}
                 />
             })
                 .filter(elem => {
@@ -119,17 +121,27 @@ class Container extends Component {
         ) : null;
 
         let sortInput = !this.state.error ? (
-            <SortInput handleSortChange={this.handleSortChange}/>
+            <SortInput handleSortChange={this.handleSortChange} />
         ) : null;
 
 
 
 
         return (
-            <div>
-                {sortInput}
-                {categoriesInput}
-                {articles}
+            <div className='container'>
+                <div className='select'>
+                    {sortInput}
+                </div> <div className='main'>
+                <div className='categories'>
+                    {categoriesInput}
+                </div>
+               
+                    <div className='articles'>
+                        {articles}
+                    </div>
+
+                </div>
+
             </div>
 
 
