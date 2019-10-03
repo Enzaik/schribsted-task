@@ -5,7 +5,6 @@ import CategoriesInput from '../../components/CategoriesInput/CategoriesInput'
 import SortInput from '../../components/SortInput/SortInput';
 import './Container.css'
 
-
 class Container extends Component {
 
     state = {
@@ -16,43 +15,40 @@ class Container extends Component {
         error: false
     };
 
+    updateArticles = articles => {
+        this.setState({ articles: this.state.articles.concat(articles) });
+    }
 
     componentDidMount() {
-        let that = this;
-
-
-
-
-        //-----------------
-
         fetch('http://localhost:6010/articles/sports')
-            .then(function (response) {
+            .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
                 return response.json();
             })
-            .then(function (json) {
-                that.setState(json);
+            .then((json) => {
+                this.setState(json);
             })
-            .catch(function () {
-                that.setState({ error: true })
+            .catch(() => {
+                this.setState({ error: true })
             });
 
         fetch('http://localhost:6010/articles/fashion')
-            .then(function (response) {
+            .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
                 return response.json();
             })
-            .then(function (json) {
-                that.setState({ articles: that.state.articles.concat(json.articles) });
+            .then((json) => {
+                this.setState({ articles: this.state.articles.concat(json.articles) });
             })
-            .catch(function () {
-                that.setState({ error: true })
+            .catch(() => {
+                this.setState({ error: true })
             });
     };
+
     handleClick = e => {
         e.persist();
         this.setState((prevState, prevProps) => {
@@ -132,10 +128,10 @@ class Container extends Component {
                 <div className='select'>
                     {sortInput}
                 </div> <div className='main'>
-                <div className='categories'>
-                    {categoriesInput}
-                </div>
-               
+                    <div className='categories'>
+                        {categoriesInput}
+                    </div>
+
                     <div className='articles'>
                         {articles}
                     </div>
