@@ -14,24 +14,44 @@ img {
 }
 
 .date {
+  text-align: right;
+  margin-left: 6px;
+  width: 148px;
+}
+
+.preamble {
   text-align: left;
   margin-left: 6px;
+  font-size: 0.8rem;
 }
 
 .description {
   display: flex;
   flex-direction: column;
-  padding: 2px 2px 2px 12px;
+  padding: 2px 12px 2px 12px;
+  width: 100%; 
 }
 
 .article {
   display: flex;
-  height: 78px;
-  margin: 5px 0px 10px 0px;
+  height: 93px;
+  margin: 5px 10px 10px 0px;
+}
+.titular{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 600px) {
   .article {
     display: flex;
+  }
+  .date {
+    text-align: right;
+    margin-left: 6px;
+  }
+  .preamble{
+      display: none;
   }
 }
