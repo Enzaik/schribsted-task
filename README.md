@@ -1,68 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Schibsted Frontend Assignment
 
-## Available Scripts
+### Brief description
 
-In the project directory, you can run:
+This is a simple project, but I found very handy the usage of **ReactJS** as it helped to, in a very fast fashion, render lists dinamically with performance ease. As my personal coding preferences, I split whole code in the **components** (for stateless components) and **containers** (for the stateful ones). The simplicity of the project allowed me to use only **one** stateful component, and managed state normally within React flow, as using **Redux** would be overcomplicate it in my opinion. 
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+In two separate terminals, firstly run in one:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+node server.js
+```
 
-### `npm test`
+and in the second one:
+```
+npm start
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Ways to improve it
 
-### `npm run build`
+Although the project is small, still a couple of things could be done:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* Configure the server to have an unified endpoint for asll articles (*/articles*, anyway all data is merged somehow).
+* Increase the number of media queries to target different devices even more accurately.
+* Use a third party library for stiling, such as **Bootstrap** or **MaterialUI** in case of desiring even fresher UI, or simply add more CSS.
