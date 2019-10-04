@@ -8,6 +8,7 @@ const article = ({ title, img, date, preamble }) => {
     const newMonth = month.slice(0,3);    
     const newDate = [day, newMonth, year].join(' ');
     console.log(newDate, 'month');
+    img = img !=='' ? img : '../../../placeholder-300x300.jpg'
     
     return (
         <div className='article'>
