@@ -5,11 +5,11 @@ import './Article.css'
 const article = ({ title, img, date, preamble }) => {
     console.log(date, 'date')
     const [day, month, year] = date.split(' ');
-    const newMonth = month.slice(0,3);    
+    const newMonth = month.slice(0, 3);
     const newDate = [day, newMonth, year].join(' ');
     console.log(newDate, 'month');
-    img = img !=='' ? img : '../../../placeholder-300x300.jpg';
-    
+    img = img !== '' ? img : '../../../placeholder-300x300.jpg';
+
     return (
         <div className='article'>
             <div className='image'>
@@ -24,14 +24,10 @@ const article = ({ title, img, date, preamble }) => {
                         {newDate}
                     </div>
                 </div>
-
                 <div className='preamble'>
                     {preamble}
                 </div>
-
-
             </div>
-
         </div>
     )
 };

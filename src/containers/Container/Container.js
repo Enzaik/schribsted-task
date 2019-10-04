@@ -53,12 +53,10 @@ class Container extends Component {
         e.persist();
         this.setState((prevState, prevProps) => {
             return { [e.target.value]: !this.state[e.target.value] }
-        },
-            () => console.log(this.state, 'state'))
+        })
     }
 
     handleSortChange = e => {
-        console.log(e.target[e.target.selectedIndex].value);
         this.setState({ order: e.target[e.target.selectedIndex].value })
     }
 
@@ -72,8 +70,6 @@ class Container extends Component {
         dayB = dayB.split('.')[0];
         let myADate = new Date(`${yearA}-${months.indexOf(monthA) + 1}-${dayA}`)
         let myBDate = new Date(`${yearB}-${months.indexOf(monthB) + 1}-${dayB}`)
-        console.log(this.state.order, 'order state');
-
 
         if (myADate < myBDate && this.state.order === 'asc') {
             return -1;
@@ -89,7 +85,6 @@ class Container extends Component {
         }
         return 0;
     }
-
 
     render() {
         let articles;
@@ -120,9 +115,6 @@ class Container extends Component {
             <SortInput handleSortChange={this.handleSortChange} />
         ) : null;
 
-
-
-
         return (
             <div className='container'>
                 <div className='select'>
@@ -131,17 +123,11 @@ class Container extends Component {
                     <div className='categories'>
                         {categoriesInput}
                     </div>
-
                     <div className='articles'>
                         {articles}
                     </div>
-
                 </div>
-
             </div>
-
-
-
         )
     }
 };

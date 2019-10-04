@@ -29,7 +29,7 @@ img {
   display: flex;
   flex-direction: column;
   padding: 2px 12px 2px 12px;
-  width: 100%; 
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -38,17 +38,17 @@ img {
   height: 93px;
   margin: 5px 10px 10px 0px;
 }
-.titular{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.titular {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 600px) {
   .article {
     display: flex;
   }
-  .title{
+  .title {
     font-size: 18px;
   }
   .date {
@@ -56,14 +56,14 @@ img {
     margin-left: 6px;
     font-size: 0.9rem;
   }
-  .preamble{
-      display: none;
+  .preamble {
+    display: none;
   }
-  .titular{
+  .titular {
     display: flex;
     flex-direction: column;
   }
-  .description{
+  .description {
     display: flex;
     flex-direction: row;
     padding: 2px 12px 2px 12px;

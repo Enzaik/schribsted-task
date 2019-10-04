@@ -1,16 +1,16 @@
-.articles-input{
-    display: flex;
-    flex-direction: column;
-    width: 100px;
+.articles-input {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
 }
 
-.sport, .fashion{
-    display: flex
+.sport,
+.fashion {
+  display: flex;
 }
 
 @media only screen and (max-width: 600px) {
-
-    .articles-input{
-        flex-direction: row;
-    }
+  .articles-input {
+    flex-direction: row;
+  }
 }

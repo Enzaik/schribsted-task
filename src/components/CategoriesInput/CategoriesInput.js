@@ -9,8 +9,6 @@ const categoriesInput = ({ handleClick }) => (
         <div className='fashion'>
             <input type='checkbox' value='fashion' /> <label>Fashion</label>
         </div>
-
-
     </div>
 )
 
