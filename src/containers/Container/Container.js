@@ -52,7 +52,7 @@ class Container extends Component {
     handleClick = e => {
         e.persist();
         this.setState((prevState, prevProps) => {
-            return { [e.target.value]: !this.state[e.target.value] }
+            return { [e.target.value]: !prevState[e.target.value] }
         })
     }
 
