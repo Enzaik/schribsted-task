@@ -12,7 +12,8 @@ class Container extends Component {
         fashion: false,
         sport: false,
         order: 'asc',
-        error: false
+        errorSport: false,
+        errorFashion: false,
     };
 
     updateArticles = articles => {
@@ -31,7 +32,7 @@ class Container extends Component {
                 this.setState(json);
             })
             .catch(() => {
-                this.setState({ error: true })
+                this.setState({ errorSport: true })
             });
 
         fetch('http://localhost:6010/articles/fashion')
@@ -45,7 +46,7 @@ class Container extends Component {
                 this.setState({ articles: this.state.articles.concat(json.articles) });
             })
             .catch(() => {
-                this.setState({ error: true })
+                this.setState({ errorFashion: true })
             });
     };
 
@@ -88,7 +89,16 @@ class Container extends Component {
 
     render() {
         let articles;
-        if (!this.state.error) {
+        let error ;
+        if (this.state.errorSport) {
+            error = <span>Error in sports</span>
+        } else if (this.state.errorFashion) {
+            error = <span> Error in fashion</span>
+        }else{
+            error = null;
+        }
+
+        if (!this.state.errorSport || !this.state.errorFashion) {
             articles = this.state.articles.map(article => {
                 return <Article
                     key={article.id}
@@ -104,7 +114,8 @@ class Container extends Component {
                 })
                 .sort(this.compare)
         } else {
-            articles = <span> Server error </span>
+            articles = null
+            error = <span> Error in backend</span>
         }
 
         let categoriesInput = !this.state.error ? (
@@ -117,14 +128,15 @@ class Container extends Component {
 
         return (
             <div className='container'>
+                {error}
                 <div className='select'>
                     {sortInput}
-                </div> <div className='main'>
+                </div> <div className='main'> 
                     <div className='categories'>
                         {categoriesInput}
                     </div>
                     <div className='articles'>
-                        {articles}
+                        {articles} 
                     </div>
                 </div>
             </div>
